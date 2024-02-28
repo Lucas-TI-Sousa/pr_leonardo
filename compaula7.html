@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complemento aula-7</title>
+    <style>
+        body{
+            background-color: #ccc;
+            color: #000;
+        }
+        .mudarCor{
+            background-color: #222;
+            color: #fff;
+        }
+    </style>
+</head>
+<body  class="class-1" id="pagina">
+    <h1>Aula 07</h1>
+    <button onclick="mudarTema()">Mudar tema</button>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, illum nam magni laborum in eligendi cupiditate 
+       quasi provident laudantium asperiores dignissimos sit ratione odio, enim commodi pariatur vero iure nobis.</p>
+       <script>
+        let pagina = document.getElementById("pagina");
+
+        function mudarTema() {
+            pagina.classList.toggle("mudarCor");
+            console.log(pagina.classList)
+
+        }
+
+        
+        /*toggle(classe) --atribuir uma classe e sua estilizaçãoquando for*/
+        
+       </script>
+    
+</body>
+</html>

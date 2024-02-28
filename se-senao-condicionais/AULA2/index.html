@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 02</title>
+</head>
+<body>
+        <!-- INICIO DO JS -->
+        <script>
+            //SE - SENAO (CONDICIONAIS)
+            //OPERADORES LÓGICOS
+            /*
+                VERIFICAÇÃO DE MÉDIA ESCOLAR
+            
+                MEDIA = (N1 + N2 + N3 + N4) / 4
+    
+                PARA QUE O ALUNO SEJA APROVADO A MÉDIA TEM QUE SER MAIOR OU IGUAL A 6, SENÃO O ALUNO ESTÁ REPROVADO.
+    
+                SE MEDIA >= 6 ENTAO
+                    ESCREVAL (APROVADO)
+                SENAO
+                    ESCREVAL (REPROVADO)    
+            */
+           
+            var media = (5 + 6 + 7 + 8) / 4
+            if (media >= 6) { //SE MEDIA >= 6ENTAO
+                alert ("aprovação")  
+            } 
+            else{ //SENAO
+                alert ("Reprovado")
+            }
+            /*
+            SE MEDIA >= 6 ENTAO
+                APROVADO
+            SENAO SE MEDIA == 5 ENTAO
+                RECUPERAÇÃO
+            SENAO
+                    REPROVADO 
+            */        
+        if(media >= 6) { // SE MEDIA >= 6 ENTAO
+            alert("aprovado")
+        } else if(media == 5) { // SENAO SE MEDIA == 5 ENTAO
+            aler("recuperação")
+        } else { // SENAO
+            alert("reprovado")
+        }
+    
+                   
+            /*        
+             OPERADORES DE COMPARAÇÃO
+             == IGUALDADE
+             >= MAIOR OU IGUAL
+             <= MANOR OU IGUAL
+             > MAIOR QUE
+             < MENOR QUE
+             != DIFERENÇA
+             <> DIFERENÇA 
+             === IGUALDADE ESTRITA
+
+             E -> AND &&
+             OU -> OR ||
+             
+             VALORES BOOLEANOS / BOOLEAN ( TRUE / FALSE)
+             -------TABELA VERDADE (E)----------
+             E1 E2 E1 AND E2
+             V V    V
+             V F    F
+             F F    V
+            
+             -------TABELA VERDADE (OU)----------
+             E1 E2 E1 OR E2
+             V V    V
+             V F    V
+             F F    F
+            */
+          var num = parseInt(prompt("digite um numero:"))
+          var num2 = parseInt(prompt("digite outro numero:"))
+           alert(num + num2)
+          
+
+        </script>
+        <!-- FIM DO JS -->
+    </body>
+    </html>

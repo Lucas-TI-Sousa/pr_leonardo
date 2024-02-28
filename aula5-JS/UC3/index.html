@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <input type="text" id="nome" nome="nome">
+        <button id="btn-inserir">Inserir</button>
+        <script>
+            /* Arrays - push(): Inserir uma nova 
+            Informação dentro do nosso array(vetor).
+            
+            Arrays - pop() - Remover uma informacao do nosso array(vetor) no ultimo item;
+            
+            Arrays - shift(): Remover uma informação do nosso array(vetor) do primeiro item;
+            
+            Arrays - unsift(): Insirir um item no inicio do nosso array(item)
+            */
+            var nome = ["Fulano", "Fulana"];
+            console.log(nome);
+    
+            nomes.push("Bruno");
+    
+            console.log(nomes);
+            nome.pop();
+            nome.shift();
+            nome.unshift();
+            console.log(nomes);
+
+            var botao = document.getElementById("btn-inserir"); 
+            botao.addEventListener("click", function(){
+                var nome = document.getElementById("nome");
+                
+                nome.push(nome.value);
+                nome.value = "";
+                console.log(nome)
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aula - 6</title>
+</head>
+<body>
+    <h4>folha de pagamento</h4>
+    <label for="nome">nome completo:</label>
+    <input type="text" name="nome" id="nome">
+
+    <label for="corgo">cargo:</label>
+    <input type="text" name="cargo" id="cargo">
+
+    <label for="salario">salario bruto:</label>
+    <input type="text" name="salario" id="salario">
+    <button id="btn-gerar-folha">Gerar folhar de pagamento</button>
+
+    <div id="relatorio"></div>
+
+    <script>
+        var botaoGerar = document.getElementById("btn-gerar-folha");
+        var relatorio = document.getElementById("relatorio")
+
+
+        botaoGerar.addEventListener("click", function(){
+            //variavéis dos inputs
+            var nome = document.getElementById("nome");
+            var cargo = document.getElementById("cargo");
+            var salario = document.getElementById("salario");
+
+            //Variaveis para os caculos
+            var descVT = 0;//6% -> 0.06
+            var descINSS = 0;//Tabela do INSS (ano)
+            var descVR = 0;//120 -> Salario até 2500 / 200
+            var salarioliquido = 0; //Salario - descontos
+
+            //Desconto do VT
+            descVT = parseFloat(salarioliquido) * 0.06;
+          
+
+            //Desconto do VR
+           
+            if(parseFloat(salario.value) > 2500) {
+                descVR = 200;
+            } else {
+                descVR = 120
+            }
+
+            if(parseFloat(salario.value) <=1412) {
+                descINSS = 105.90;
+            } else if(parseFloat(salario.value) >1412 && parseFloat(salario.value) <= 2666.68) {
+                descINSS = 105.90 + 112.92
+            } else if(parseFloat(salario.value) > 2666.68 && parseFloat(salario.value) <= 4000.03) {
+                descINSS = 105.90 + 112.92 + 160
+            }else {
+                descINSS =  105.90 + 112.92 + 160 + 530.04 
+            }
+            salarioliquido = parseFloat(salario.value) - (descVT + descVR + descINSS)
+
+            relatorio.innerHTML = "<p>Nome completo: " + nome.value + "</p>"
+                                   + "</p>Cargo: " + cargo.value + "</p>"
+                                   + "</p>Salário Bruto: " + salario.value + "</p>"
+                                   + "</p>Salário líquido: " + salarioliquido + "</p>"
+                
+
+             
+        });
+    </script>
+
+    
+</body>
+</html>
