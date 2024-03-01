@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 5px;
+           
+        }
+        table, table tr, table tr td, table tr th{
+            border: 1px solid #ccc;
+            padding: 3px;
+            border-radius: 5px;
+        }
+        body{
+        background-image:url(imagens/cerveja.jpeg) ;
+        background-size: 50%;
+        color: black;
+       
+       
+        }
+        input{
+            background-color: gray;
+        }        
+       
+    </style>
+   
+ 
+ 
+</head>
+<body>
+    <body>
+        <h4>Escolha seu filme</h4>
+   
+        <label for="nome"></label>
+        <input type="text" id="nome" name="nome">
+   
+        <label for="filme">filme</label>
+        <select name="filme" id="filme">
+            <option value="americano">Americano</option>
+            <option value="brasileiro">Brasileiro</option>
+        </select>
+        <label for="americano">Americanos</label>
+    <input type="text" id="americano" name="americano">
+ 
+    <label for="brasileiro">Brasileiros</label>
+    <input type="text" id="brasileiro" name="brasileiro">
+ 
+   
+ 
+        <button id="btn-inserir">Inserir</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome Completo</th>
+                    <th>filme</th>
+                    <th>Americanos</th>
+                    <th>Brasileiros</th>
+                   
+                </tr>
+            </thead>
+            <tbody id="tabela-filme"></tbody>
+        </table>
+        <script>
+        var nome    = document.getElementById("nome");
+        var filme = document.getElementById("filme")
+        var americano = document.getElementById("americano");
+        var brasileiro = document.getElementById("brasileiro");
+        var botao = document.getElementById("btn-inserir");
+        var tabelaFilme = document.getElementById("tabela-filme");
+       
+        var nomes=[]
+        var filmes=[]
+        var americanos=[]
+        var brasileiros=[]
+ 
+        botao.addEventListener("click", function(){
+ 
+        nomes.push(nome.value)
+        filmes.push(filme.value)
+        americanos.push(americano.value)
+        brasileiros.push(brasileiro.value)
+ 
+        nome.value = "";
+        filme.value = "";
+        americano.value = "";
+        brasileiro.value = "";
+ 
+        mostrarfilmes();
+ 
+ 
+        });
+   
+ 
+        function mostrarfilmes() {
+            var aux = "";
+         
+ 
+            for (var cont = 0; cont < nomes.length; cont++) {
+            aux += '<tr>'
+ 
+ 
+                            + '<td>' + nomes[cont] + '</td>'
+                            + '<td>' + filmes[cont] + '</td>'
+                            + '<td>' + americanos[cont] + '</td>'
+                            + '<td>' + brasileiros[cont] + '</td>';
+                       
+                            aux += '</tr>';
+                           
+            }
+ 
+            tabelaFilme.innerHTML = aux;
+        }
+       
+       
+ 
+        </script>
+   
+     
+</body>
+</html>
