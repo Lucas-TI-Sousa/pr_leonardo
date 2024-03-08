@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisão</title>
+</head>
+<style>
+     
+        table, table tr, table tr td, table tr th{
+            border: 1px solid #ccc;
+            padding: 3px;
+        }
+
+</style>
+
+
+<body>
+  
+
+     <h1>Tabela de preços</h1>
+    <label for="nome">nome completo</label>
+    <input type="text" name="nome" id="nome">
+
+    <label for="curso">curso</label>
+    <input type="text" name="curso" id="curso">
+
+    <label for="val">valor</label>
+    <input type="text" name="val" id="val">
+
+   
+
+    <label for="des">descontos</label>
+    <select name="des" id="des">
+        <option value="50"></option>
+        <option value="75">75%</option>
+    </select>
+
+    <button id="btn-gerar-folha">Gerar</button>
+
+    <div id="relatorio"></div>
+
+
+
+   
+    <script>
+        var botaoGerar = document.getElementById("btn-gerar-folha");
+        var relatorio = document.getElementById("relatorio");
+        
+
+
+        botaoGerar.addEventListener("click", function(){
+            
+            var nome = document.getElementById("nome");
+            var curso = document.getElementById("curso");
+            var val = document.getElementById("val");
+            var des = document.getElementById("des");
+          
+    
+            var curso = 0;
+            var val = 0; 
+
+            
+             curso = parseFloat(des) * 50;
+             var des = 0;//6% -> 0.06
+             
+
+            //Desconto do VT
+            des = parseFloat(curso) * 0.50;
+          
+
+            //Desconto do VR
+           
+            
+            
+            /*
+
+            if(parseFloat(salario.value) <=1412) {
+                descINSS = 105.90;
+            } else if(parseFloat(salario.value) >1412 && parseFloat(salario.value) <= 2666.68) {
+                descINSS = 105.90 + 112.92
+            } else if(parseFloat(salario.value) > 2666.68 && parseFloat(salario.value) <= 4000.03) {
+                descINSS = 105.90 + 112.92 + 160
+            }else {
+                descINSS =  105.90 + 112.92 + 160 + 530.04 
+            }
+            */
+            curso = parseFloat(des.value) - (des)
+
+            relatorio.innerHTML = "<p>Nome completo: " + nome.value + "</p>"
+                                   + "</p>curso: " + curso.value + "</p>"
+                                   + "</p>val: " + val.value + "</p>"
+                                  
+
+             
+
+          
+
+            
+           /*
+            if(parseFloat(salario.value) > 2500) {
+                descVR = 200;
+            } else {
+                descVR = 120
+            }  
+        
+            
+*/
+        
+           
+
+             
+        });
+    </script>
+
+    
+</body>
+</html>

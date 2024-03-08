@@ -47,6 +47,7 @@
             } else {
                 descVR = 120
             }
+            /*
 
             if(parseFloat(salario.value) <=1412) {
                 descINSS = 105.90;
@@ -57,6 +58,7 @@
             }else {
                 descINSS =  105.90 + 112.92 + 160 + 530.04 
             }
+            */
             salarioliquido = parseFloat(salario.value) - (descVT + descVR + descINSS)
 
             relatorio.innerHTML = "<p>Nome completo: " + nome.value + "</p>"
