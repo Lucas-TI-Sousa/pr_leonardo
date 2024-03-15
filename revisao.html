@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisão aula - 10</title>
+</head>
+<style>
+     *{
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 5px;
+           
+        }
+        table, table tr, table tr td, table tr th{
+            border: 1px solid #ccc;
+            padding: 3px;
+            border-radius: 5px;
+        }
+        body{
+        background-image:url(imagens/cerveja.jpeg) ;
+        background-size: 50%;
+        color: black;
+        }
+        input{
+            display: block;
+            margin: 20px;
+            height: 30px;
+            width: 300px;
+        }
+        button {
+            height: 30px;
+            width: 400px;
+        }
+        li{
+            border: 1px solid black;
+
+        }
+        
+    
+</style>
+
+
+<body>
+        <h1>Aula 10 - Arrays/laço de Repetição (Exercicio de repetição)</h1>
+        <h2>Formulário de contato</h2>
+        <div class="container">
+            
+            <input type="text" name="nome" id="nome" placeholder="Nome">
+
+            <input type="text" name="email" id="email" placeholder="E-mail">
+
+           
+            <input type="text" name="tel" id="tel" placeholder="Telefone">
+
+           
+            <input type="text" name="assu" id="assu" placeholder="Assunto">
+
+            <input type="text" name="men" id="men" placeholder="Mensagem">
+
+            <button id="btm">Enviar</button>
+
+        </div>
+
+        <h2>Lista de contatos (Recebidas)</h2>
+
+        
+            
+                <ul id="relatorio">
+                    <li><h2>Contatos</h2></li>
+                    <li>nome completo</li>
+                    <li>Email</li>
+                    <li>Telefone</li>
+                    <li>Assunto</li>
+                    <li>Mensagem</li>
+
+                </ul>
+            
+          
+
+            
+    
+        
+        <script>
+            var nome = document.getElementById("nome")
+            var email = document.getElementById("email")
+            var tel = document.getElementById("tel")
+            var assu = document.getElementById("assu")
+            var men = document.getElementById("men")
+            var botao = document.getElementById("btm");
+            var relatorio = document.getElementById("relatorio");
+
+        var nomes = [];
+        var emails = [];
+        var tels = [];
+        var assus = [];
+        var mens = [];
+
+        botao.addEventListener("click", function(){
+            nomes.push(nome.value)
+            emails.push(email.value)
+            tels.push(parseInt(tel.value))
+            assus.push(assu.value)
+            mens.push(men.value)
+
+            mostrarrelatorio();
+    
+});
+
+function mostrarrelatorio() {
+    var aux = "";
+                  
+            for (var cont = 0; cont < nomes.length; cont++) {
+            aux += '<ul>'
+ 
+                            + '<li><h2>Contato</h2>'+'</li>'
+                            + '<li>Nome: ' + nomes[cont] + '</li>'
+                            + '<li>E-mail: ' + emails[cont] + '</li>'
+                            + '<li>Telefone: ' + tels[cont] + '</li>'
+                            + '<li>Assunto: ' + assus[cont] + '</li>'
+                            + '<li>Mensagem: ' + mens[cont] + '</li>';
+                       
+                            aux += '</ul>';
+                           
+            }
+ 
+            relatorio.innerHTML = aux;
+        }
+       
+       
+
+</script>
+
+
+           
+
+
+
+
+    
+</body>
+</html>
