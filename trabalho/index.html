@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    
+</head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+body{
+    display: flex;
+    padding: 0 35px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #343F4F;
+}
+.wrapper{
+    max-width: 1200px;
+    position: relative;
+
+}
+.wrapper i{
+    top: 50%;
+    height: 46px;
+    width: 46px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    line-height: 46px;
+    background: #fff;
+    border-radius: 50px;
+    transform: translateY(-50%);
+   
+}
+.wrapper i:hover{
+    background: #f2f2f2;
+}
+
+.wrapper i:first-child{
+    left: -23px;  
+    display: none;
+} 
+.wrapper i:last-child{
+    right: -23px;
+
+}
+
+.wrapper .carousel{
+    font-size: 0px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+}
+.carousel.dragging{
+    cursor: grab;
+    scroll-behavior: auto;
+}
+.carousel.dragging img{
+    pointer-events: none;
+}
+
+.carousel img{
+    height: 340px;
+    object-fit: cover;
+    margin-left: 14px;
+    width: calc(100% / 3);
+}
+.carousel img:first-child{
+    margin-left: 0px;
+}
+@media screen and (max-width: 900px){
+    .carousel img{
+        width: calc(100% / 2);
+    }  
+}
+@media screen and (max-width: 550px){
+    .carousel img{
+        width: 100%;
+    }  
+}
+
+</style>
+<body>
+    <div class="wrapper">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+        <div class="carousel">
+            <img src="images.jfif" alt="img" draggable="false">
+            <img src="images.jfif" alt="img" draggable="false">
+            <img src="images.jfif" alt="img" draggable="false">
+            <img src="images.jfif" alt="img" draggable="false">
+            <img src="images.jfif" alt="img" draggable="false">
+        </div>
+        <i id="right" class="fa-solid fa-angle-right"></i>
+    </div>
+    <script>
+
+const carousel = document . querySelector (".carousel"),
+firstImg = carousel.querySelectorAll("img") [0],
+arrowIcons= document.querySelectorAll(".wrapper i");
+
+let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+const showHideIcons = () => {  
+    // mostrando e ocultando o ícone anterior/próximo de acordo com o valor de rolagem para a esquerda do carrossel
+    let scrollWidth = carousel.scrollWidth - carousel.ScrollLeft; //obtendo a largura máxima rolável
+    arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
+    arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
+}
+arrowIcons.forEach ( icon => { 
+    icon.addEventListener("click", () => {  
+        let firstImgWidth = firstImg.clientWidth + 14 ; // obtendo a largura da primeira imagem e adicionando o valor da margem 14
+        // se o ícone clicado estiver à esquerda, reduza o valor da largura da rolagem do carrossel para a esquerda, caso contrário, adicione-o
+        carousel.scrollLeft += icon.id == "left" ? -firstImgWidth: firstImgWidth;
+        setTimeout(() => showHideIcons(), 60); //chamando showHideIcons após 60ms  
+    });
+});
+const autoSlide = () => {  
+    // se não houver mais nenhuma imagem para rolar então retorne daqui
+    if (carousel. scrollLeft - ( carousel.scrollWidth - carousel.clientWidth ) > -1 || carousel.scrollLeft <= 0 ) return ; 
+    positionDiff = Math.abs(positionDiff); //tornando o valor positionDiff para positivo
+    let firstImgWidth = firstImg. clientWidth + 14 ;
+    // obtendo o valor da diferença que precisa ser adicionado ou reduzido da esquerda do carrossel para o centro da imagem intermediária
+    let valDifference = firstImgWidth - positionDiff;
+    if (carousel. scrollLeft > prevScrollLeft ) { // se o usuário estiver rolando para a direita  
+         return carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference: -positionDiff;
+    }
+    // se o usuário estiver rolando para a esquerda
+    carousel. scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+}
+const dragStart = (e) => {  
+    // atualizando o valor das variáveis ​​globais no evento de mouse pressionado
+    isDragStart = true ;
+    prevPageX = e.pageX || e.touches[0].pageX;
+    prevScrollLeft = carousel.scrollLeft;
+}
+const dragging = (e) => {  
+    // rolando imagens/carrossel para a esquerda de acordo com o ponteiro do mouse
+    if (!isDragStart) return; 
+    e.preventDefault();
+    isDragging = true;
+    carousel.classList.add ( "dragging" );
+    positionDiff = ( e. pageX || e.touches [0] .pageX ) - prevPageX;
+    carousel. scrollLeft = prevScrollLeft - positionDiff;
+    showHideIcons();
+}
+const dragStop = () => {  
+    isDragStart = false;
+    carousel.classList.remove("dragging");
+    if (!isDragging ) return; 
+    isDragging = false;
+    autoSlide ();
+}
+carousel. addEventListener ( "mousedown" , dragStart );
+carousel. addEventListener ( "touchstart" , dragStart );
+document . addEventListener ( "mousemove" , dragging );
+carousel. addEventListener ( "touchmove" , dragging );
+document . addEventListener ( "mouseup" , dragStop );
+carousel. addEventListener ( "touchend" , dragStop );
+    </script>
+    
+</body>
+</html>
